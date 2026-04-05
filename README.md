@@ -17,228 +17,104 @@ Copyright (c) 2025 Prabhasingh. All rights reserved.
 
 ---
 
-### Installation
+## ⚠️ Requirements
+
+**TechnocodeX requires [Bun](https://bun.sh) runtime to run.**
+
+Bun is a fast JavaScript runtime (like Node.js) that TechnocodeX is built on.
+
+---
+
+## Installation
+
+### Step 1: Install Bun (One Time)
+
+```powershell
+# Windows (PowerShell)
+powershell -Command "irm bun.sh | iex"
+```
+
+```bash
+# macOS/Linux
+curl -fsSL https://bun.sh/install | bash
+```
+
+### Step 2: Run TechnocodeX
 
 ```bash
 # Clone the repository
 git clone https://github.com/incedo-mob-prabhashkumar/technocode
 cd technocode
 
-# Quick Start - just run the launcher!
-# Windows:
-technocode.bat
-
-# Or manually:
+# Run
 cd packages/opencode
 bun run start
 ```
 
-**No separate bun install needed** - the `.bat` file auto-installs bun if missing.
-
-# Install dependencies
-
-cd technocode
-bun install
-
-# Run
-
-bun dev
-
-````
-
-### Quick Start
+### Or use the launcher (auto-installs bun):
 
 ```bash
-# Start the CLI
+# Windows
+technocode.bat
+
+# Linux/Mac
+./technocode.sh
+```
+
+---
+
+## Quick Start
+
+```bash
 cd packages/opencode
-bun run dev
-````
+bun run start
+```
 
-### Supported Providers
+Then type your message and press Enter to start coding with AI.
 
-TechnocodeX supports multiple LLM providers:
+---
 
-#### 1. TechnocodeX Zen (Recommended)
+## Features
+
+- ✅ AI coding assistant (TUI - Terminal UI)
+- ✅ Multiple LLM providers (OpenAI, Anthropic, Ollama, Azure, etc.)
+- ✅ GitHub MCP integration
+- ✅ Skills/Plugins system
+- ✅ VS Code extension
+- ✅ Git auto-create PR
+
+---
+
+## Configuration
+
+Set your API key:
 
 ```bash
 export OPENCODE_API_KEY=your_key_here
-```
-
-#### 2. Ollama (Local)
-
-```bash
-# Start Ollama first
-ollama serve
-
-# Configure in opencode.jsonc
-{
-  "provider": {
-    "ollama": {
-      "api": "http://localhost:11434/v1",
-      "env": ["OPENAI_API_KEY"],
-      "models": {
-        "llama3.2": { "id": "llama3.2" },
-        "qwen2.5-coder": { "id": "qwen2.5-coder" }
-      }
-    }
-  }
-}
-```
-
-#### 3. Azure OpenAI
-
-```bash
-export AZURE_OPENAI_API_KEY=your_azure_key
-
-# Configure in opencode.jsonc
-{
-  "provider": {
-    "azure": {
-      "api": "https://your-resource.openai.azure.com",
-      "apiVersion": "2024-02-01",
-      "env": ["AZURE_OPENAI_API_KEY"],
-      "models": {
-        "gpt-4": { "id": "gpt-4" },
-        "gpt-5": { "id": "gpt-5" }
-      }
-    }
-  }
-}
-```
-
-#### 4. Anthropic (Claude)
-
-```bash
+# or
 export ANTHROPIC_API_KEY=your_claude_key
-
-# Configure in opencode.jsonc
-{
-  "provider": {
-    "anthropic": {
-      "env": ["ANTHROPIC_API_KEY"],
-      "models": {
-        "claude-sonnet-4": { "id": "claude-sonnet-4-20250514" },
-        "claude-opus-4": { "id": "claude-opus-4-20250514" }
-      }
-    }
-  }
-}
 ```
 
-#### 5. Hugging Face
+Or use `/connect` in the CLI to add providers.
 
-```bash
-export HF_TOKEN=your_hf_token
+---
 
-# Configure in opencode.jsonc
-{
-  "provider": {
-    "huggingface": {
-      "api": "https://api-inference.huggingface.co/models/meta-llama/Meta-Llama-3-8B-Instruct/v1",
-      "env": ["HF_TOKEN"],
-      "models": {
-        "llama3": { "id": "meta-llama/Meta-Llama-3-8B-Instruct" }
-      }
-    }
-  }
-}
-```
+## Supported Providers
 
-#### 6. OpenAI Compatible (Any API)
+| Provider        | Description                |
+| --------------- | -------------------------- |
+| TechnocodeX Zen | Cloud models (recommended) |
+| Anthropic       | Claude models              |
+| OpenAI          | GPT models                 |
+| Azure           | Azure OpenAI               |
+| Ollama          | Local models               |
+| Hugging Face    | HF inference               |
 
-```bash
-export OPENAI_API_KEY=your_api_key
+---
 
-# Configure in opencode.jsonc
-{
-  "provider": {
-    "custom": {
-      "api": "https://your-api-endpoint.com/v1",
-      "env": ["OPENAI_API_KEY"],
-      "models": {
-        "model-name": { "id": "model-name" }
-      }
-    }
-  }
-}
-```
+## Documentation
 
-### Configuration
-
-Create `opencode.jsonc` in your project directory with your provider settings.
-
-### Skills & Plugins
-
-TechnocodeX supports skills for extended functionality:
-
-```bash
-# Create a skill directory
-mkdir -p skills/my-skill
-
-# Create SKILL.md with instructions
-echo "# My Skill" > skills/my-skill/SILL.md
-```
-
-Skills are loaded from:
-
-- `./skills/` (project directory)
-- `~/.technocode/skills/` (global)
-
-### MCP Servers
-
-TechnocodeX supports MCP (Model Context Protocol) servers for extended capabilities:
-
-```bash
-# List available MCP servers
-bun run index.ts mcp list
-
-# Add a MCP server
-bun run index.ts mcp add github "npx -y @github/mcp-server"
-
-# Add GitHub MCP (official)
-bun run index.ts mcp add github https://github.com/github/github-mcp-server
-
-# Add custom MCP server
-bun run index.ts mcp add my-server "npx -y my-mcp-package"
-```
-
-#### Popular MCP Servers:
-
-| Server         | Description                 |
-| -------------- | --------------------------- |
-| `github`       | GitHub PRs, issues, commits |
-| `filesystem`   | File operations             |
-| `brave-search` | Web search                  |
-| `slack`        | Slack integration           |
-| `google-maps`  | Maps & directions           |
-
-When MCP servers are added, the AI can use their tools directly in conversations.
-
-### VS Code Extension
-
-TechnocodeX is also available as a VS Code extension:
-
-```bash
-# Build the extension
-cd sdks/vscode
-bun run build
-
-# Install locally
-code --install-extension dist/technocodex-1.0.0.vsix
-```
-
-Or install from VS Code Marketplace (coming soon).
-
-The extension provides:
-
-- AI chat panel in VS Code
-- Terminal integration
-- File operations
-- GitHub integration via MCP
-
-### Documentation
-
-For more info on how to configure TechnocodeX, check the [packages/opencode/README.md](./packages/opencode/README.md).
+For more info, check [packages/opencode/README.md](./packages/opencode/README.md).
 
 ---
 
