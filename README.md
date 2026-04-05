@@ -22,14 +22,29 @@ Copyright (c) 2025 Prabhasingh. All rights reserved.
 ```bash
 # Clone the repository
 git clone https://github.com/incedo-mob-prabhashkumar/technocode
+cd technocode
+
+# Quick Start - just run the launcher!
+# Windows:
+technocode.bat
+
+# Or manually:
+cd packages/opencode
+bun run start
+```
+
+**No separate bun install needed** - the `.bat` file auto-installs bun if missing.
 
 # Install dependencies
+
 cd technocode
 bun install
 
 # Run
+
 bun dev
-```
+
+````
 
 ### Quick Start
 
@@ -37,7 +52,7 @@ bun dev
 # Start the CLI
 cd packages/opencode
 bun run dev
-```
+````
 
 ### Supported Providers
 
