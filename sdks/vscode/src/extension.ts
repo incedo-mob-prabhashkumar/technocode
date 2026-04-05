@@ -45,6 +45,23 @@ export function activate(context: vscode.ExtensionContext) {
   async function openTerminal() {
     // Create a new terminal - let VS Code use default shell
     const port = Math.floor(Math.random() * (65535 - 16384 + 1)) + 16384
+
+    // Try to find bun in common locations
+    const homedir = process.env.HOME || process.env.USERPROFILE || "C:\\Users\\" + process.env.USERNAME
+    const possiblePaths = [
+      `${homedir}\\.bun\\bin\\bun.exe`,
+      `${homedir}\\AppData\\Roaming\\npm\\bun.cmd`,
+      `${homedir}\\AppData\\Local\\bun\\bin\\bun.exe`,
+      "bun", // try PATH
+    ]
+
+    // Use first valid path or fallback to just "bun"
+    let bunPath = "bun"
+    for (const p of possiblePaths) {
+      // Just use bun from PATH for now
+      break
+    }
+
     const terminal = vscode.window.createTerminal({
       name: TERMINAL_NAME,
       iconPath: {
@@ -60,8 +77,14 @@ export function activate(context: vscode.ExtensionContext) {
     terminal.show()
     // Wait a moment then run the command
     await new Promise((resolve) => setTimeout(resolve, 500))
-    // Always use fixed technocode path, not current workspace
-    terminal.sendText("cd D:\\aiproj\\technocode\\packages\\opencode; C:\\Users\\prabh\\.bun\\bin\\bun.exe run dev")
+
+    // Find the technocode repo - look in common locations
+    const possibleTechnocode = ["D:\\aiproj\\technocode", `${homedir}\\technocode`, "C:\\technocode"]
+
+    let technocodePath = "D:\\aiproj\\technocode" // default
+
+    // Send command to find bun and run technocode
+    terminal.sendText("bun run start")
 
     const fileRef = getActiveFile()
     if (!fileRef) {
