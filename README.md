@@ -39,15 +39,118 @@ cd packages/opencode
 bun run dev
 ```
 
-### Configuration
+### Supported Providers
 
-Set your API key for cloud models:
+TechnocodeX supports multiple LLM providers:
+
+#### 1. TechnocodeX Zen (Recommended)
 
 ```bash
 export OPENCODE_API_KEY=your_key_here
 ```
 
-Or use `/connect` in the CLI to add providers.
+#### 2. Ollama (Local)
+
+```bash
+# Start Ollama first
+ollama serve
+
+# Configure in opencode.jsonc
+{
+  "provider": {
+    "ollama": {
+      "api": "http://localhost:11434/v1",
+      "env": ["OPENAI_API_KEY"],
+      "models": {
+        "llama3.2": { "id": "llama3.2" },
+        "qwen2.5-coder": { "id": "qwen2.5-coder" }
+      }
+    }
+  }
+}
+```
+
+#### 3. Azure OpenAI
+
+```bash
+export AZURE_OPENAI_API_KEY=your_azure_key
+
+# Configure in opencode.jsonc
+{
+  "provider": {
+    "azure": {
+      "api": "https://your-resource.openai.azure.com",
+      "apiVersion": "2024-02-01",
+      "env": ["AZURE_OPENAI_API_KEY"],
+      "models": {
+        "gpt-4": { "id": "gpt-4" },
+        "gpt-5": { "id": "gpt-5" }
+      }
+    }
+  }
+}
+```
+
+#### 4. Anthropic (Claude)
+
+```bash
+export ANTHROPIC_API_KEY=your_claude_key
+
+# Configure in opencode.jsonc
+{
+  "provider": {
+    "anthropic": {
+      "env": ["ANTHROPIC_API_KEY"],
+      "models": {
+        "claude-sonnet-4": { "id": "claude-sonnet-4-20250514" },
+        "claude-opus-4": { "id": "claude-opus-4-20250514" }
+      }
+    }
+  }
+}
+```
+
+#### 5. Hugging Face
+
+```bash
+export HF_TOKEN=your_hf_token
+
+# Configure in opencode.jsonc
+{
+  "provider": {
+    "huggingface": {
+      "api": "https://api-inference.huggingface.co/models/meta-llama/Meta-Llama-3-8B-Instruct/v1",
+      "env": ["HF_TOKEN"],
+      "models": {
+        "llama3": { "id": "meta-llama/Meta-Llama-3-8B-Instruct" }
+      }
+    }
+  }
+}
+```
+
+#### 6. OpenAI Compatible (Any API)
+
+```bash
+export OPENAI_API_KEY=your_api_key
+
+# Configure in opencode.jsonc
+{
+  "provider": {
+    "custom": {
+      "api": "https://your-api-endpoint.com/v1",
+      "env": ["OPENAI_API_KEY"],
+      "models": {
+        "model-name": { "id": "model-name" }
+      }
+    }
+  }
+}
+```
+
+### Configuration
+
+Create `opencode.jsonc` in your project directory with your provider settings.
 
 ### Documentation
 
