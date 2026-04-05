@@ -10,12 +10,23 @@
     "technocode": "./src/index.ts"
   },
   "scripts": {
+    "start": "bun run ./src/index.ts",
+    "dev": "bun run --conditions=browser ./src/index.ts",
     "typecheck": "tsgo --noEmit",
     "test": "bun test --timeout 30000",
     "build": "bun run script/build.ts",
-    "dev": "bun run --conditions=browser ./src/index.ts",
-    "start": "bun run ./src/index.ts",
     "db": "bun drizzle-kit"
+  },
+  "keywords": [
+    "ai",
+    "cli",
+    "coding",
+    "assistant",
+    "llm"
+  ],
+  "engines": {
+    "node": ">=18",
+    "bun": ">=1.0"
   },
   "bin": {
     "technocode": "./bin/technocode"
