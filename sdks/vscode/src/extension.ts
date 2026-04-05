@@ -62,7 +62,10 @@ export function activate(context: vscode.ExtensionContext) {
     })
 
     terminal.show()
-    terminal.sendText(`opencode --port ${port}`)
+    // Get the extension's installation path and run opencode from there
+    const extensionPath = context.extensionPath
+    const opencodePath = extensionPath.replace(/\\sdks\\vscode$/, "\\packages\\opencode")
+    terminal.sendText(`cd "${opencodePath}" && bun run dev`)
 
     const fileRef = getActiveFile()
     if (!fileRef) {
