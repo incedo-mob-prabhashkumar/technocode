@@ -1,10 +1,12 @@
 <p align="center">
   <a href="https://github.com/incedo-mob-prabhashkumar/technocode">
-    <picture>
-      <source srcset="packages/console/app/src/asset/logo-ornate-dark.svg" media="(prefers-color-scheme: dark)">
-      <source srcset="packages/console/app/src/asset/logo-ornate-light.svg" media="(prefers-color-scheme: light)">
-      <img src="packages/console/app/src/asset/logo-ornate-light.svg" alt="TechnocodeX logo">
-    </picture>
+  <p align="center">
+  <picture>
+    <source srcset="assets/logo-dark.png" media="(prefers-color-scheme: dark)">
+    <source srcset="assets/logo-light.png" media="(prefers-color-scheme: light)">
+    <img src="assets/logo-light.png" alt="TechnocodeX logo" width="400">
+  </picture>
+</p>
   </a>
 </p>
 <p align="center">The AI coding agent - powered by TechnocodeX.</p>
