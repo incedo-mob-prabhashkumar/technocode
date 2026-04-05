@@ -1,10 +1,9 @@
 <p align="center">
   <a href="https://github.com/incedo-mob-prabhashkumar/technocode">
-  <p align="center">
   <picture>
-    <source srcset="assets/logo-dark.png" media="(prefers-color-scheme: dark)">
-    <source srcset="assets/logo-light.png" media="(prefers-color-scheme: light)">
-    <img src="assets/logo-light.png" alt="TechnocodeX logo" width="400">
+    <source srcset="assets/logo-dark.svg" media="(prefers-color-scheme: dark)">
+    <source srcset="assets/logo-light.svg" media="(prefers-color-scheme: light)">
+    <img src="assets/logo-light.svg" alt="TechnocodeX logo" width="400">
   </picture>
 </p>
   </a>
