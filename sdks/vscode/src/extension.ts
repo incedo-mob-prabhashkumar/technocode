@@ -62,10 +62,10 @@ export function activate(context: vscode.ExtensionContext) {
     })
 
     terminal.show()
-    // Get the extension's installation path and run opencode from there
-    const extensionPath = context.extensionPath
-    const opencodePath = extensionPath.replace(/\\sdks\\vscode$/, "\\packages\\opencode")
-    terminal.sendText(`cd "${opencodePath}" && bun run dev`)
+    // Find technocode directory - look in user's home folder
+    const homedir = process.env.HOME || process.env.USERPROFILE || "D:\\aiproj"
+    const technocodePath = `${homedir}\\technocode\\packages\\opencode`
+    terminal.sendText(`cd "${technocodePath}" && bun run dev`)
 
     const fileRef = getActiveFile()
     if (!fileRef) {
