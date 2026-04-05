@@ -43,7 +43,7 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(openTerminalDisposable, addFilepathDisposable)
 
   async function openTerminal() {
-    // Create a new terminal in split screen
+    // Create a new terminal with proper cwd and command
     const port = Math.floor(Math.random() * (65535 - 16384 + 1)) + 16384
     const terminal = vscode.window.createTerminal({
       name: TERMINAL_NAME,
@@ -55,6 +55,9 @@ export function activate(context: vscode.ExtensionContext) {
         viewColumn: vscode.ViewColumn.Beside,
         preserveFocus: false,
       },
+      cwd: "D:\\aiproj\\technocode\\packages\\opencode",
+      shellPath: "bun",
+      shellArgs: ["run", "dev"],
       env: {
         _EXTENSION_OPENCODE_PORT: port.toString(),
         OPENCODE_CALLER: "vscode",
@@ -62,10 +65,6 @@ export function activate(context: vscode.ExtensionContext) {
     })
 
     terminal.show()
-    // Find technocode directory - look in user's home folder
-    const homedir = process.env.HOME || process.env.USERPROFILE || "D:\\aiproj"
-    const technocodePath = `${homedir}\\technocode\\packages\\opencode`
-    terminal.sendText(`cd "${technocodePath}" && bun run dev`)
 
     const fileRef = getActiveFile()
     if (!fileRef) {
