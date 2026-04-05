@@ -169,6 +169,36 @@ Skills are loaded from:
 - `./skills/` (project directory)
 - `~/.technocode/skills/` (global)
 
+### MCP Servers
+
+TechnocodeX supports MCP (Model Context Protocol) servers for extended capabilities:
+
+```bash
+# List available MCP servers
+bun run index.ts mcp list
+
+# Add a MCP server
+bun run index.ts mcp add github "npx -y @github/mcp-server"
+
+# Add GitHub MCP (official)
+bun run index.ts mcp add github https://github.com/github/github-mcp-server
+
+# Add custom MCP server
+bun run index.ts mcp add my-server "npx -y my-mcp-package"
+```
+
+#### Popular MCP Servers:
+
+| Server         | Description                 |
+| -------------- | --------------------------- |
+| `github`       | GitHub PRs, issues, commits |
+| `filesystem`   | File operations             |
+| `brave-search` | Web search                  |
+| `slack`        | Slack integration           |
+| `google-maps`  | Maps & directions           |
+
+When MCP servers are added, the AI can use their tools directly in conversations.
+
 ### Documentation
 
 For more info on how to configure TechnocodeX, check the [packages/opencode/README.md](./packages/opencode/README.md).
