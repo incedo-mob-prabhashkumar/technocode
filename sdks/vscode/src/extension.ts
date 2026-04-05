@@ -3,7 +3,7 @@ export function deactivate() {}
 
 import * as vscode from "vscode"
 
-const TERMINAL_NAME = "opencode"
+const TERMINAL_NAME = "TechnocodeX"
 
 export function activate(context: vscode.ExtensionContext) {
   let openNewTerminalDisposable = vscode.commands.registerCommand("opencode.openNewTerminal", async () => {
@@ -43,7 +43,7 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(openTerminalDisposable, addFilepathDisposable)
 
   async function openTerminal() {
-    // Create a new terminal with proper cwd and command
+    // Create a new terminal - let VS Code use default shell
     const port = Math.floor(Math.random() * (65535 - 16384 + 1)) + 16384
     const terminal = vscode.window.createTerminal({
       name: TERMINAL_NAME,
@@ -55,16 +55,13 @@ export function activate(context: vscode.ExtensionContext) {
         viewColumn: vscode.ViewColumn.Beside,
         preserveFocus: false,
       },
-      cwd: "D:\\aiproj\\technocode\\packages\\opencode",
-      shellPath: "bun",
-      shellArgs: ["run", "dev"],
-      env: {
-        _EXTENSION_OPENCODE_PORT: port.toString(),
-        OPENCODE_CALLER: "vscode",
-      },
     })
 
     terminal.show()
+    // Wait a moment then run the command
+    await new Promise((resolve) => setTimeout(resolve, 500))
+    // Always use fixed technocode path, not current workspace
+    terminal.sendText("cd D:\\aiproj\\technocode\\packages\\opencode; C:\\Users\\prabh\\.bun\\bin\\bun.exe run dev")
 
     const fileRef = getActiveFile()
     if (!fileRef) {
