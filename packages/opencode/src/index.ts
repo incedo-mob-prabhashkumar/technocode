@@ -28,6 +28,7 @@ import { AcpCommand } from "./cli/cmd/acp"
 import { EOL } from "os"
 import { WebCommand } from "./cli/cmd/web"
 import { PrCommand } from "./cli/cmd/pr"
+import { prCreateCommand } from "./cli/cmd/pr-create"
 import { SessionCommand } from "./cli/cmd/session"
 import { DbCommand } from "./cli/cmd/db"
 import path from "path"
@@ -143,6 +144,7 @@ let cli = yargs(hideBin(process.argv))
   .command(ImportCommand)
   .command(GithubCommand)
   .command(PrCommand)
+  .command(prCreateCommand)
   .command(SessionCommand)
   .command(DbCommand)
 
