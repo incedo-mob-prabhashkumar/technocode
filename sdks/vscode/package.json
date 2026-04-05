@@ -1,9 +1,9 @@
 {
-  "name": "opencode",
-  "displayName": "opencode",
-  "description": "opencode for VS Code",
-  "version": "1.2.27",
-  "publisher": "sst-dev",
+  "name": "technocodex",
+  "displayName": "TechnocodeX",
+  "description": "TechnocodeX AI coding assistant for VS Code",
+  "version": "1.0.0",
+  "publisher": "prabhasingh",
   "repository": {
     "type": "git",
     "url": "https://github.com/anomalyco/opencode"

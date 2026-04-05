@@ -199,6 +199,28 @@ bun run index.ts mcp add my-server "npx -y my-mcp-package"
 
 When MCP servers are added, the AI can use their tools directly in conversations.
 
+### VS Code Extension
+
+TechnocodeX is also available as a VS Code extension:
+
+```bash
+# Build the extension
+cd sdks/vscode
+bun run build
+
+# Install locally
+code --install-extension dist/technocodex-1.0.0.vsix
+```
+
+Or install from VS Code Marketplace (coming soon).
+
+The extension provides:
+
+- AI chat panel in VS Code
+- Terminal integration
+- File operations
+- GitHub integration via MCP
+
 ### Documentation
 
 For more info on how to configure TechnocodeX, check the [packages/opencode/README.md](./packages/opencode/README.md).
