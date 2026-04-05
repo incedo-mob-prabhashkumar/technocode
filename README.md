@@ -152,6 +152,23 @@ export OPENAI_API_KEY=your_api_key
 
 Create `opencode.jsonc` in your project directory with your provider settings.
 
+### Skills & Plugins
+
+TechnocodeX supports skills for extended functionality:
+
+```bash
+# Create a skill directory
+mkdir -p skills/my-skill
+
+# Create SKILL.md with instructions
+echo "# My Skill" > skills/my-skill/SILL.md
+```
+
+Skills are loaded from:
+
+- `./skills/` (project directory)
+- `~/.technocode/skills/` (global)
+
 ### Documentation
 
 For more info on how to configure TechnocodeX, check the [packages/opencode/README.md](./packages/opencode/README.md).
